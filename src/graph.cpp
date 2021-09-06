@@ -5,12 +5,15 @@ Graph::Graph(int numberOfNodes, int numberOfEdges){
     this->numberOfNodes = numberOfNodes;
     this->numberOfEdges = numberOfEdges;
     this->adjList.resize(numberOfNodes, vector<int>(0));
+    this->visited.resize(numberOfNodes, false);
+    this->revisited.resize(numberOfNodes, false);
 }
 
 Graph::Graph(int numberOfNodes){
 
     this->numberOfNodes = numberOfNodes;
     this->adjList.resize(numberOfNodes, vector<int>(0));
+    this->visited.resize(numberOfNodes, false);
 }
 
 
@@ -21,6 +24,13 @@ void Graph::addEdge(int node1, int node2){
 
 }
 
+bool Graph::getVisited(int node){
+    return visited[node];
+}
+
+void Graph::setVisited(int node){
+    visited[node] = true;
+}
 
 vector<int> Graph::getNeighbors(int node){
     return adjList[node];

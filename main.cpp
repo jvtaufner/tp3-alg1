@@ -3,13 +3,14 @@
 #include <fstream>
 
 #include "./lib/graph.hpp"
+#include "./lib/graph_utils.hpp"
 
 using namespace std;
 
 Graph readInput(char** argv){
 
     int x, y, aux1, aux2;
-    fstream file(argv[1], ios::in);
+    fstream file(argv[2], ios::in);
 
     file >> x >> y;
     Graph graph(x, y);
@@ -24,26 +25,26 @@ Graph readInput(char** argv){
     return graph;
 }
 
-
-
-
 int main(int argc, char** argv){
 
     Graph graph = readInput(argv);
-    for(int i=0; i<graph.getNumberOfNodes(); i++){
-        for(int v : graph.getNeighbors(i)){
-            cout << "vizinhos de" << i << ": " << v << " ";
-        }
-        cout << "\n";
+    string arg = argv[1];
+
+    if(arg == "tarefa1"){
+
+        cout << GraphUtils::minVertexCover(graph);
+
     }
 
-    ///home/jvtaufner/ufmg/alg1/alg1_tp3/test_cases_prof/ct00.txt
+    else if(arg == "tarefa2"){
+        // a implementar
+    }
 
-
-
-
+    else{
+        cout << "input invalido";
+    }
     
 
-
+    ///home/jvtaufner/ufmg/alg1/alg1_tp3/test_cases_prof/ct00.txt
 
 }
