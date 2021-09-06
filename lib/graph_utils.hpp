@@ -18,7 +18,8 @@ class GraphUtils{
     public:
 
     static void DFS(Graph &graph, int node, vector<int> &dfsFinishOrder);
-    static int minVertexCover(Graph graph);
+    static int minVertexCoverForTrees(Graph &graph);
+    static int aproxVertexCover(Graph &graph);
 
 };
 

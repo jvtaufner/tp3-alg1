@@ -32,12 +32,17 @@ int main(int argc, char** argv){
 
     if(arg == "tarefa1"){
 
-        cout << GraphUtils::minVertexCover(graph);
+        cout << GraphUtils::minVertexCoverForTrees(graph) << endl;
 
     }
 
     else if(arg == "tarefa2"){
-        // a implementar
+        cout << GraphUtils::aproxVertexCover(graph) << endl;
+        for(int i=0; i<graph.getNumberOfNodes(); i++){
+            if(graph.getVisited(i)){
+                cout << i << endl;
+            }
+        }
     }
 
     else{

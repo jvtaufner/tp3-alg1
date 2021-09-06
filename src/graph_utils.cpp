@@ -34,13 +34,11 @@ void GraphUtils::DFS(Graph &graph, int node, vector<int> &dfsFinishOrder){
     dfsFinishOrder.push_back(node);
 }
 
-int GraphUtils::minVertexCover(Graph graph){
+int GraphUtils::minVertexCoverForTrees(Graph &graph){
 
     vector<pair<int, int>> subproblem (graph.getNumberOfNodes(), make_pair(-1, -1)); //primeiro caso inclua, segundo caso exclua
     vector<int> dfsFinishOrder;
     DFS(graph, 0,  dfsFinishOrder);
-
-    int minVertexCover = -1;
 
     for(int node: dfsFinishOrder){
 
@@ -62,5 +60,30 @@ int GraphUtils::minVertexCover(Graph graph){
     }*/
 
     return min(subproblem[dfsFinishOrder[graph.getNumberOfNodes()]].first, subproblem[dfsFinishOrder[graph.getNumberOfNodes()]].second);
+}
 
+int GraphUtils::aproxVertexCover(Graph &graph){
+
+    for(int i=0; i<graph.getNumberOfNodes(); i++){
+        if(!graph.getVisited(i)){
+            for(int v : graph.getNeighbors(i)){
+                if(!graph.getVisited(v)){
+                    graph.setVisited(v);
+                    graph.setVisited(i);
+                    break;
+                }
+            }
+        }
+
+    }
+
+    int minVertexCover = 0;
+
+    for(int j=0; j < graph.getNumberOfNodes(); j++){
+        if(graph.getVisited(j)){
+            minVertexCover++; 
+        }
+    }
+
+    return  minVertexCover;
 }
